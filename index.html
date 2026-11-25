@@ -1,801 +1,707 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AN-NASIR DIAGNOSTIC CENTER - Searchable Price List</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter & Hind Siliguri for Bangla -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome for clean medical icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'Hind Siliguri', 'sans-serif'],
-                        bangla: ['Hind Siliguri', 'sans-serif'],
-                    },
-                    colors: {
-                        teal: {
-                            50: '#f0fdfa',
-                            100: '#ccfbf1',
-                            200: '#99f6e4',
-                            300: '#5eead4',
-                            400: '#2dd4bf',
-                            500: '#14b8a6',
-                            600: '#0d9488',
-                            700: '#0f766e',
-                            800: '#115e59',
-                            900: '#134e4a',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Custom scrollbar for category pills */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        /* Smooth transitions */
-        .test-card {
-            transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
-        }
-        .test-card:hover {
-            transform: translateY(-1px);
-        }
-    </style>
-</head>
-<body class="bg-slate-50 text-slate-800 antialiased pb-28">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AN-NASIR DIAGNOSTIC CENTER — Price List</title>
+  <style>
+    :root {
+      --bg: #070b0a;
+      --surface: #0e1513;
+      --surface-2: #141e1b;
+      --border: #1f2e29;
+      --text: #e8f1ee;
+      --muted: #8da39b;
+      --accent: #14b8a6;
+      --accent-soft: rgba(20, 184, 166, 0.14);
+      --accent-border: rgba(20, 184, 166, 0.35);
+      --danger: #f87171;
+    }
 
-    <!-- Top Header Banner -->
-    <header class="bg-gradient-to-r from-teal-800 via-teal-700 to-teal-800 text-white shadow-md">
-        <div class="max-w-5xl mx-auto px-4 py-5 sm:py-6">
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                <div class="flex items-start sm:items-center gap-3.5">
-                    <div class="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center shrink-0 shadow-inner">
-                        <i class="fa-solid fa-hospital-user text-2xl text-teal-100"></i>
-                    </div>
-                    <div>
-                        <p class="font-bangla text-teal-200 text-sm sm:text-base font-medium tracking-wide">
-                            আন্-নাসির ডায়াগনস্টিক সেন্টার
-                        </p>
-                        <h1 class="text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">
-                            AN-NASIR DIAGNOSTIC CENTER
-                        </h1>
-                        <p class="font-bangla text-xs sm:text-sm text-teal-100/90 mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
-                            <span><i class="fa-solid fa-location-dot mr-1 text-teal-300"></i>আধুনিক জেলা হাসপাতাল মোড়, সদর রোড, জয়পুরহাট।</span>
-                            <a href="tel:01339757912" class="inline-flex items-center font-semibold text-white hover:text-teal-200 underline decoration-teal-400/60 underline-offset-2">
-                                <i class="fa-solid fa-phone mr-1 text-teal-300"></i>মোবা: ০১৩৩৯-৭৫৭৯১২
-                            </a>
-                        </p>
-                    </div>
-                </div>
-                <div class="self-start sm:self-center">
-                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-teal-900/60 border border-teal-500/30 text-teal-100">
-                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                        Official Test Price List
-                    </span>
-                </div>
-            </div>
-        </div>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+      padding-bottom: 110px;
+    }
+
+    .container {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 18px 16px;
+    }
+
+    /* Header */
+    .top-header {
+      background: linear-gradient(145deg, var(--surface), #0a100e);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .lab-info h1 {
+      font-size: clamp(1.15rem, 2.5vw, 1.55rem);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+    }
+
+    .lab-info p {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 3px;
+    }
+
+    .lab-tag {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.75rem;
+      color: var(--accent);
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-border);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    .creator-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      text-align: right;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--accent-border);
+      margin-left: auto;
+    }
+
+    .creator-label {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    .creator-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-top: 2px;
+      letter-spacing: 0.02em;
+    }
+
+    .creator-phone {
+      font-size: 0.84rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .creator-phone:hover {
+      text-decoration: underline;
+    }
+
+    /* Controls */
+    .controls {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(7, 11, 10, 0.92);
+      backdrop-filter: blur(10px);
+      padding: 10px 0 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 14px;
+    }
+
+    .search-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+    }
+
+    .search-box input {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 12px 42px 12px 14px;
+      border-radius: 12px;
+      font-size: 0.96rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+
+    .clear-btn {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      border-radius: 8px;
+      padding: 3px 8px;
+      font-size: 0.78rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    .clear-btn.visible {
+      display: inline-block;
+    }
+
+    .categories {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-top: 10px;
+      scrollbar-width: none;
+    }
+
+    .categories::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cat-btn {
+      white-space: nowrap;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .cat-btn.active,
+    .cat-btn:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .stats-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+      padding: 0 2px;
+    }
+
+    /* Table */
+    .table-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      background: var(--surface-2);
+      color: var(--muted);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    thead th.rate-col,
+    tbody td.rate-col {
+      text-align: right;
+    }
+
+    thead th.select-col,
+    tbody td.select-col {
+      text-align: center;
+      width: 52px;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.12s;
+    }
+
+    tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    tbody tr.selected {
+      background: rgba(20, 184, 166, 0.08);
+    }
+
+    tbody td {
+      padding: 11px 14px;
+      font-size: 0.92rem;
+      vertical-align: middle;
+    }
+
+    .sl-badge {
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+
+    .test-name {
+      font-weight: 600;
+      color: #f3faf7;
+    }
+
+    .test-cat {
+      display: inline-block;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .rate-val {
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .rate-na {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 36px 16px;
+      color: var(--muted);
+    }
+
+    /* Floating Calculator Bar */
+    .calc-bar {
+      position: fixed;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 28px);
+      max-width: 988px;
+      background: #0f1b18;
+      border: 1px solid var(--accent-border);
+      border-radius: 14px;
+      padding: 12px 16px;
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65);
+      z-index: 30;
+    }
+
+    .calc-bar.visible {
+      display: flex;
+    }
+
+    .calc-info {
+      font-size: 0.88rem;
+    }
+
+    .calc-total {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .reset-calc {
+      background: rgba(248, 113, 113, 0.14);
+      border: 1px solid rgba(248, 113, 113, 0.35);
+      color: var(--danger);
+      padding: 7px 12px;
+      border-radius: 9px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .footer {
+      margin-top: 22px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .creator-badge {
+        align-items: flex-start;
+        text-align: left;
+        width: 100%;
+      }
+      thead th, tbody td {
+        padding: 10px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="top-header">
+      <div class="lab-info">
+        <h1>AN-NASIR DIAGNOSTIC CENTER</h1>
+        <p>Hospital Road, Sadar Road, Joypurhat • Diagnostic Price Directory</p>
+        <span class="lab-tag">Total 105 Examinations</span>
+      </div>
+
+      <div class="creator-badge">
+        <span class="creator-label">Compiled &amp; Designed by</span>
+        <strong class="creator-name">MD ESMI AZOM SAMI</strong>
+        <a href="tel:+8801601136317" class="creator-phone">+8801601-136317</a>
+      </div>
     </header>
 
-    <!-- Sticky Search & Filter Controls -->
-    <div class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div class="max-w-5xl mx-auto px-4 pt-3.5 pb-3">
-            <!-- Search Input Row -->
-            <div class="relative flex items-center">
-                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                    <i class="fa-solid fa-magnifying-glass text-teal-600 text-base"></i>
-                </div>
-                <input 
-                    type="text" 
-                    id="searchInput" 
-                    placeholder="Search by test name (e.g., CBC, USG, HbA1C), SL number, or category..." 
-                    class="w-full pl-10 pr-20 py-3 bg-slate-100/80 border border-slate-300 rounded-xl text-sm sm:text-base text-slate-900 placeholder-slate-400 focus:outline-none focus:bg-white focus:border-teal-600 focus:ring-2 focus:ring-teal-500/20 transition-all"
-                    autocomplete="off"
-                >
-                <button 
-                    id="clearSearchBtn" 
-                    class="hidden absolute right-2.5 px-2.5 py-1.5 text-xs font-medium text-slate-600 bg-slate-200 hover:bg-slate-300 rounded-lg transition-colors"
-                    title="Clear search"
-                >
-                    Clear
-                </button>
-            </div>
-
-            <!-- Category Filter Pills -->
-            <div id="categoryContainer" class="flex items-center gap-2 overflow-x-auto no-scrollbar pt-3 pb-1">
-                <!-- Pills injected via JS -->
-            </div>
+    <!-- Search & Category Filter -->
+    <section class="controls">
+      <div class="search-row">
+        <div class="search-box">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search test name, serial (e.g. CBC, USG, 08)..."
+            autocomplete="off"
+          />
+          <button type="button" id="clearSearch" class="clear-btn">Clear</button>
         </div>
+      </div>
+      <div class="categories" id="categoryBar"></div>
+    </section>
+
+    <div class="stats-bar">
+      <span id="resultCount">Showing 105 tests</span>
+      <span>Tick boxes to estimate total</span>
     </div>
 
-    <!-- Main Content Area -->
-    <main class="max-w-5xl mx-auto px-4 pt-4">
-        <!-- Results Summary & Quick Actions -->
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-3 text-xs sm:text-sm text-slate-500">
-            <div id="resultCount" class="font-medium text-slate-600">
-                Showing all 105 tests
-            </div>
-            <div class="flex items-center gap-3">
-                <span class="hidden sm:inline text-slate-400">Tip: Click <strong class="text-teal-700 font-semibold">+ Add</strong> to calculate total bill</span>
-                <button id="toggleSelectAllVisible" class="text-teal-700 hover:text-teal-800 font-medium hover:underline">
-                    Select/Deselect All
-                </button>
-            </div>
-        </div>
-
-        <!-- Desktop Table Header (Hidden on Mobile) -->
-        <div class="hidden md:grid md:grid-cols-12 gap-4 px-4 py-2.5 bg-teal-50 border border-teal-100 rounded-t-xl text-xs font-bold uppercase tracking-wider text-teal-800">
-            <div class="col-span-1">SL</div>
-            <div class="col-span-5">Name of the Examination</div>
-            <div class="col-span-3">Category</div>
-            <div class="col-span-2 text-right">Rate (Tk)</div>
-            <div class="col-span-1 text-center">Estimate</div>
-        </div>
-
-        <!-- Test List Container -->
-        <div id="testListContainer" class="space-y-2 md:space-y-0 md:divide-y md:divide-slate-200 md:bg-white md:border-x md:border-b md:border-slate-200 md:rounded-b-xl md:shadow-sm">
-            <!-- Items injected via JS -->
-        </div>
-
-        <!-- Empty State -->
-        <div id="emptyState" class="hidden py-16 text-center bg-white rounded-2xl border border-slate-200 mt-2">
-            <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-slate-100 flex items-center justify-center text-slate-400">
-                <i class="fa-solid fa-file-medical text-2xl"></i>
-            </div>
-            <h3 class="text-base font-semibold text-slate-800">No matching tests found</h3>
-            <p class="text-sm text-slate-500 mt-1 max-w-md mx-auto">
-                Try searching with a shorter keyword (e.g. "Sugar", "USG", "ICT") or reset the category filter.
-            </p>
-            <button id="resetFiltersBtn" class="mt-4 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-xl shadow-sm transition-colors">
-                Reset All Filters
-            </button>
-        </div>
-    </main>
-
-    <!-- Floating Estimate / Bill Calculator Bar -->
-    <div id="estimateBar" class="fixed bottom-0 inset-x-0 z-40 transform translate-y-full transition-transform duration-300 ease-out">
-        <div class="max-w-5xl mx-auto px-3 pb-3 sm:px-4 sm:pb-4">
-            <div class="bg-slate-900 text-white rounded-2xl shadow-2xl border border-slate-700/80 p-3.5 sm:px-5 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                <div class="flex items-center justify-between sm:justify-start gap-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-xl bg-teal-500/20 border border-teal-400/30 flex items-center justify-center text-teal-300 font-bold" id="selectedCountBadge">
-                            0
-                        </div>
-                        <div>
-                            <div class="text-xs text-slate-400 uppercase tracking-wider font-semibold">Estimated Total</div>
-                            <div class="text-xl sm:text-2xl font-bold text-white flex items-baseline gap-1">
-                                <span id="totalAmount">0</span>
-                                <span class="text-sm font-normal text-teal-300">Tk</span>
-                                <span id="naWarning" class="hidden text-xs font-normal text-amber-400 ml-1">(+ N/A items)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex items-center gap-2 self-end sm:self-center w-full sm:w-auto justify-end">
-                    <button id="viewEstimateBtn" class="flex-1 sm:flex-none px-4 py-2.5 bg-teal-600 hover:bg-teal-500 text-white text-xs sm:text-sm font-semibold rounded-xl transition-colors flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-receipt"></i>
-                        <span>View Slip</span>
-                    </button>
-                    <button id="clearEstimateBtn" class="px-3.5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs sm:text-sm font-medium rounded-xl border border-slate-700 transition-colors" title="Clear selected tests">
-                        Clear
-                    </button>
-                </div>
-            </div>
-        </div>
+    <!-- Price Table -->
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="select-col">+</th>
+            <th style="width: 64px;">SL</th>
+            <th>Name of the Examination</th>
+            <th class="rate-col">Rate (Tk)</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+      <div id="emptyState" class="empty-state" style="display: none;">
+        No matching test found. Try another keyword.
+      </div>
     </div>
 
-    <!-- Estimate Summary Modal -->
-    <div id="estimateModal" class="hidden fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="flex items-end sm:items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <!-- Backdrop -->
-            <div id="modalBackdrop" class="fixed inset-0 bg-slate-900/70 backdrop-blur-xs transition-opacity"></div>
+    <footer class="footer">
+      Digital Price List by <strong>MD ESMI AZOM SAMI</strong> •
+      <a href="tel:+8801601136317">+8801601-136317</a>
+    </footer>
+  </div>
 
-            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-
-            <!-- Modal Panel -->
-            <div class="relative inline-block align-bottom bg-white rounded-2xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg w-full border border-slate-200">
-                <!-- Modal Header -->
-                <div class="bg-teal-800 text-white px-5 py-4 flex items-center justify-between">
-                    <div>
-                        <h3 class="text-base font-bold leading-6" id="modal-title">
-                            Estimated Test Bill
-                        </h3>
-                        <p class="text-xs text-teal-200 mt-0.5">AN-NASIR DIAGNOSTIC CENTER</p>
-                    </div>
-                    <button id="closeModalBtn" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors">
-                        <i class="fa-solid fa-xmark"></i>
-                    </button>
-                </div>
-
-                <!-- Selected Items List -->
-                <div class="px-5 py-4 max-h-[60vh] overflow-y-auto divide-y divide-slate-100" id="modalItemsList">
-                    <!-- Selected items injected here -->
-                </div>
-
-                <!-- Modal Footer -->
-                <div class="bg-slate-50 px-5 py-4 border-t border-slate-200">
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-sm font-semibold text-slate-600">Total Payable Estimate:</span>
-                        <span class="text-xl font-bold text-teal-800" id="modalTotalAmount">0 Tk</span>
-                    </div>
-                    <div class="flex items-center gap-2.5">
-                        <button id="copySlipBtn" class="flex-1 py-2.5 px-4 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-xl shadow-sm transition-colors flex items-center justify-center gap-2">
-                            <i class="fa-regular fa-copy"></i>
-                            <span id="copyBtnText">Copy Estimate List</span>
-                        </button>
-                        <button id="closeModalFooterBtn" class="py-2.5 px-4 bg-white hover:bg-slate-100 text-slate-700 text-sm font-medium rounded-xl border border-slate-300 transition-colors">
-                            Done
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <!-- Selected Tests Estimator -->
+  <div class="calc-bar" id="calcBar">
+    <div class="calc-info">
+      <div id="selectedCount">0 tests selected</div>
+      <div class="calc-total">Total: <span id="totalAmount">0</span> Tk</div>
     </div>
+    <button type="button" class="reset-calc" id="resetCalc">Clear Selection</button>
+  </div>
 
-    <!-- Custom Toast Notification -->
-    <div id="toast" class="fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-opacity duration-300">
-        <div class="bg-slate-900 text-white text-xs sm:text-sm font-medium px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2">
-            <i class="fa-solid fa-circle-check text-emerald-400"></i>
-            <span id="toastMessage">Copied to clipboard!</span>
-        </div>
-    </div>
+  <script>
+    const tests = [
+      { sl: "01", category: "Biochemical Test", name: "FBS/RBS", rate: 150 },
+      { sl: "02", category: "Biochemical Test", name: "2 hrs ABF & Urine Sugar", rate: 150 },
+      { sl: "03", category: "Biochemical Test", name: "2 hrs ABF 75 gm Glucose (Plasma)", rate: 150 },
+      { sl: "04", category: "Biochemical Test", name: "2 Hours after Lunch", rate: 150 },
+      { sl: "05", category: "Biochemical Test", name: "2 hrs After Dinner (Plasma)", rate: 150 },
+      { sl: "06", category: "Biochemical Test", name: "PPBS", rate: 120 },
+      { sl: "07", category: "Biochemical Test", name: "OGTT", rate: 610 },
+      { sl: "08", category: "Biochemical Test", name: "HbA1C", rate: 1050 },
+      { sl: "09", category: "Biochemical Test", name: "S. Cholesterol (Total)", rate: 350 },
+      { sl: "10", category: "Biochemical Test", name: "S. Triglyceride", rate: 350 },
+      { sl: "11", category: "Biochemical Test", name: "HDL Cholesterol", rate: 360 },
+      { sl: "12", category: "Biochemical Test", name: "LDL Cholesterol", rate: 400 },
+      { sl: "13", category: "Biochemical Test", name: "Lipid Profile", rate: 1000 },
+      { sl: "14", category: "Biochemical Test", name: "Bilirubin (Total, Direct, Indirect)", rate: 800 },
+      { sl: "15", category: "Biochemical Test", name: "S. Bilirubin (Total)", rate: 400 },
+      { sl: "16", category: "Biochemical Test", name: "SGPT (ALT)", rate: 450 },
+      { sl: "17", category: "Biochemical Test", name: "SGOT (AST)", rate: 400 },
+      { sl: "18", category: "Biochemical Test", name: "S. ALP", rate: 550 },
+      { sl: "19", category: "Biochemical Test", name: "Iron Profile", rate: null },
+      { sl: "20", category: "Biochemical Test", name: "S. Creatinine", rate: 400 },
+      { sl: "21", category: "Biochemical Test", name: "LFT(SGPT, SGOT, ALP, Bilirubin)", rate: 1600 },
+      { sl: "22", category: "Biochemical Test", name: "RFT (Creatinine, Urea, Electrolyte, Urine R/E)", rate: 1800 },
+      { sl: "23", category: "Biochemical Test", name: "Lipase", rate: 1200 },
+      { sl: "24", category: "Biochemical Test", name: "S. Amylase", rate: 1200 },
+      { sl: "25", category: "Biochemical Test", name: "S. Electrolyte", rate: 1200 },
+      { sl: "26", category: "Biochemical Test", name: "S. Calcium", rate: 550 },
+      { sl: "27", category: "Biochemical Test", name: "S. Uric Acid", rate: 400 },
+      { sl: "28", category: "Haematological Test", name: "TC", rate: 150 },
+      { sl: "29", category: "Haematological Test", name: "DC", rate: 150 },
+      { sl: "30", category: "Haematological Test", name: "ESR", rate: 150 },
+      { sl: "31", category: "Haematological Test", name: "HB%", rate: 200 },
+      { sl: "32", category: "Haematological Test", name: "CBC", rate: 600 },
+      { sl: "33", category: "Haematological Test", name: "Platellate count (PC)", rate: 250 },
+      { sl: "34", category: "Haematological Test", name: "PBF", rate: 600 },
+      { sl: "35", category: "Haematological Test", name: "Reticulocyte count", rate: 400 },
+      { sl: "36", category: "Haematological Test", name: "MP", rate: 250 },
+      { sl: "37", category: "Haematological Test", name: "CE", rate: 250 },
+      { sl: "38", category: "Haematological Test", name: "BT/CT", rate: 220 },
+      { sl: "39", category: "Hormone & Immunological Test", name: "T3", rate: 1000 },
+      { sl: "40", category: "Hormone & Immunological Test", name: "T4", rate: 1000 },
+      { sl: "41", category: "Hormone & Immunological Test", name: "TSH", rate: 1000 },
+      { sl: "42", category: "Hormone & Immunological Test", name: "FT3", rate: 1000 },
+      { sl: "43", category: "Hormone & Immunological Test", name: "FT4", rate: 1000 },
+      { sl: "44", category: "Hormone & Immunological Test", name: "T3, T4, TSH", rate: 3000 },
+      { sl: "45", category: "Hormone & Immunological Test", name: "S. Ferritine", rate: 400 },
+      { sl: "46", category: "Hormone & Immunological Test", name: "S. IgE (Total)", rate: 1450 },
+      { sl: "47", category: "Hormone & Immunological Test", name: "S. FSH", rate: 1400 },
+      { sl: "48", category: "Hormone & Immunological Test", name: "B-HCG", rate: 2000 },
+      { sl: "49", category: "Hormone & Immunological Test", name: "S. Testosterone (Total)", rate: 1500 },
+      { sl: "50", category: "Hormone & Immunological Test", name: "Prolactin", rate: 1400 },
+      { sl: "51", category: "Hormone & Immunological Test", name: "Progesterone", rate: 1200 },
+      { sl: "52", category: "Hormone & Immunological Test", name: "CA 125", rate: 2000 },
+      { sl: "53", category: "Hormone & Immunological Test", name: "CA 19.9", rate: 2000 },
+      { sl: "54", category: "Hormone & Immunological Test", name: "CA 15.3", rate: 1980 },
+      { sl: "55", category: "Hormone & Immunological Test", name: "Vitamin-D (25-OH)", rate: 3500 },
+      { sl: "56", category: "Hormone & Immunological Test", name: "Vitamin B-12", rate: 2200 },
+      { sl: "57", category: "Hormone & Immunological Test", name: "S. Troponin-1", rate: 1400 },
+      { sl: "58", category: "Hormone & Immunological Test", name: "Dope-Test", rate: 2000 },
+      { sl: "59", category: "Microbiological Test", name: "Blood For C/S", rate: null },
+      { sl: "60", category: "Microbiological Test", name: "Urine For C/S", rate: 700 },
+      { sl: "61", category: "Microbiological Test", name: "AFB Sputum", rate: 500 },
+      { sl: "62", category: "Microbiological Test", name: "Urine R/M/E", rate: 180 },
+      { sl: "63", category: "Microbiological Test", name: "Stool OBT", rate: 450 },
+      { sl: "64", category: "Microbiological Test", name: "Stool R/E", rate: 200 },
+      { sl: "65", category: "Serological Test", name: "RA Factor", rate: 600 },
+      { sl: "66", category: "Serological Test", name: "CRP", rate: 600 },
+      { sl: "67", category: "Serological Test", name: "Aso Titre", rate: 600 },
+      { sl: "68", category: "Serological Test", name: "Blood Group", rate: 150 },
+      { sl: "69", category: "Serological Test", name: "Febrile Antigen", rate: 900 },
+      { sl: "70", category: "Serological Test", name: "Widal Test", rate: 400 },
+      { sl: "71", category: "Serological Test", name: "Weil Felix", rate: 400 },
+      { sl: "72", category: "Serological Test", name: "VDRL", rate: 360 },
+      { sl: "73", category: "Serological Test", name: "Cross Matching", rate: 1000 },
+      { sl: "74", category: "Serological Test", name: "TPHA/Syphilis (ICT)", rate: 480 },
+      { sl: "75", category: "Serological Test", name: "APTT", rate: 1200 },
+      { sl: "76", category: "Serological Test", name: "MT", rate: 350 },
+      { sl: "77", category: "Serological Test", name: "Kala - Azar (ICT)", rate: 900 },
+      { sl: "78", category: "Serological Test", name: "Pregnancy Test (PT)", rate: 240 },
+      { sl: "79", category: "Serological Test", name: "Dengue IgM & IgG, NS1", rate: 500 },
+      { sl: "80", category: "Serological Test", name: "H.Pylori (ICT)", rate: 450 },
+      { sl: "81", category: "Serological Test", name: "HAV (ICT)", rate: null },
+      { sl: "82", category: "Serological Test", name: "HBsAg (ICT)", rate: 500 },
+      { sl: "83", category: "Serological Test", name: "HCV (ICT)", rate: 500 },
+      { sl: "84", category: "Serological Test", name: "HEV (ICT)", rate: null },
+      { sl: "85", category: "Serological Test", name: "HIV 1&2 (ICT)", rate: null },
+      { sl: "86", category: "Serological Test", name: "HCG (ICT)", rate: 500 },
+      { sl: "87", category: "Ultrasonography Test", name: "USG of Neck", rate: 1500 },
+      { sl: "88", category: "Ultrasonography Test", name: "USG of W/A", rate: 900 },
+      { sl: "89", category: "Ultrasonography Test", name: "U/A, L/A, KUB (Each)", rate: 800 },
+      { sl: "90", category: "Ultrasonography Test", name: "Pregnancy Profile", rate: 850 },
+      { sl: "91", category: "Ultrasonography Test", name: "USG of Both Breast", rate: 1600 },
+      { sl: "92", category: "Ultrasonography Test", name: "W/A & PVR", rate: 1200 },
+      { sl: "93", category: "Ultrasonography Test", name: "USG of HBS", rate: 800 },
+      { sl: "94", category: "Ultrasonography Test", name: "KUB & PVR", rate: 1050 },
+      { sl: "95", category: "Ultrasonography Test", name: "Twin Pregnancy", rate: 1150 },
+      { sl: "96", category: "Ultrasonography Test", name: "USG of Thyroid", rate: 1500 },
+      { sl: "97", category: "Ultrasonography Test", name: "USB of TVS", rate: 1800 },
+      { sl: "98", category: "Ultrasonography Test", name: "Anomaly Scan (Colour)", rate: 1600 },
+      { sl: "99", category: "X-Ray", name: "X-ray 10 x 14", rate: 650 },
+      { sl: "100", category: "X-Ray", name: "X-ray 14 x 17", rate: 700 },
+      { sl: "101", category: "X-Ray", name: "X-ray 8 x10", rate: 550 },
+      { sl: "102", category: "X-Ray", name: "X-ray Report B/V", rate: 100 },
+      { sl: "103", category: "ECG/ECHO", name: "ECG", rate: 350 },
+      { sl: "104", category: "ECG/ECHO", name: "Echo (4D) Adult", rate: 2400 },
+      { sl: "105", category: "ECG/ECHO", name: "Echo", rate: 1200 }
+    ];
 
-    <script>
-        // Complete 105 Test Items Dataset
-        const testData = [
-            { sl: "01", category: "Biochemical Test", name: "FBS/RBS", rate: "150/-", price: 150 },
-            { sl: "02", category: "Biochemical Test", name: "2 hrs ABF & Urine Sugar", rate: "150/-", price: 150 },
-            { sl: "03", category: "Biochemical Test", name: "2 hrs ABF 75 gm Glucose (Plasma)", rate: "150/-", price: 150 },
-            { sl: "04", category: "Biochemical Test", name: "2 Hours after Lunch", rate: "150/-", price: 150 },
-            { sl: "05", category: "Biochemical Test", name: "2 hrs After Dinner (Plasma)", rate: "120/-", price: 120 },
-            { sl: "06", category: "Biochemical Test", name: "PPBS", rate: "610/-", price: 610 },
-            { sl: "07", category: "Biochemical Test", name: "OGTT", rate: "1050/-", price: 1050 },
-            { sl: "08", category: "Biochemical Test", name: "HbA1C", rate: "350/-", price: 350 },
-            { sl: "09", category: "Biochemical Test", name: "S. Cholesterol (Total)", rate: "350/-", price: 350 },
-            { sl: "10", category: "Biochemical Test", name: "S. Triglyceride", rate: "360/-", price: 360 },
-            { sl: "11", category: "Biochemical Test", name: "HDL Cholesterol", rate: "400/-", price: 400 },
-            { sl: "12", category: "Biochemical Test", name: "LDL Cholesterol", rate: "1000/-", price: 1000 },
-            { sl: "13", category: "Biochemical Test", name: "Lipid Profile", rate: "800/-", price: 800 },
-            { sl: "14", category: "Biochemical Test", name: "Bilirubin (Total, Direct, Indirect)", rate: "400/-", price: 400 },
-            { sl: "15", category: "Biochemical Test", name: "S. Bilirubin (Total)", rate: "450/-", price: 450 },
-            { sl: "16", category: "Biochemical Test", name: "SGPT (ALT)", rate: "400/-", price: 400 },
-            { sl: "17", category: "Biochemical Test", name: "SGOT (AST)", rate: "550/-", price: 550 },
-            { sl: "18", category: "Biochemical Test", name: "S. ALP", rate: "N/A", price: null },
-            { sl: "19", category: "Biochemical Test", name: "Iron Profile", rate: "400/-", price: 400 },
-            { sl: "20", category: "Biochemical Test", name: "S. Creatinine", rate: "1600/-", price: 1600 },
-            { sl: "21", category: "Biochemical Test", name: "LFT (SGPT, SGOT, ALP, Bilirubin)", rate: "1800/-", price: 1800 },
-            { sl: "22", category: "Biochemical Test", name: "RFT (Creatinine, Urea, Electrolyte, Urine R/E)", rate: "1200/-", price: 1200 },
-            { sl: "23", category: "Biochemical Test", name: "Lipase", rate: "1200/-", price: 1200 },
-            { sl: "24", category: "Biochemical Test", name: "S. Amylase", rate: "1200/-", price: 1200 },
-            { sl: "25", category: "Biochemical Test", name: "S. Electrolyte", rate: "550/-", price: 550 },
-            { sl: "26", category: "Biochemical Test", name: "S. Calcium", rate: "400/-", price: 400 },
-            { sl: "27", category: "Biochemical Test", name: "S. Uric Acid", rate: "N/A", price: null },
-            { sl: "28", category: "Haematological Test", name: "TC", rate: "150/-", price: 150 },
-            { sl: "29", category: "Haematological Test", name: "DC", rate: "150/-", price: 150 },
-            { sl: "30", category: "Haematological Test", name: "ESR", rate: "150/-", price: 150 },
-            { sl: "31", category: "Haematological Test", name: "HB%", rate: "200/-", price: 200 },
-            { sl: "32", category: "Haematological Test", name: "CBC", rate: "600/-", price: 600 },
-            { sl: "33", category: "Haematological Test", name: "Platelet count (PC)", rate: "250/-", price: 250 },
-            { sl: "34", category: "Haematological Test", name: "PBF", rate: "600/-", price: 600 },
-            { sl: "35", category: "Haematological Test", name: "Reticulocyte count", rate: "400/-", price: 400 },
-            { sl: "36", category: "Haematological Test", name: "MP", rate: "250/-", price: 250 },
-            { sl: "37", category: "Haematological Test", name: "CE", rate: "250/-", price: 250 },
-            { sl: "38", category: "Haematological Test", name: "BT/CT", rate: "220/-", price: 220 },
-            { sl: "39", category: "Hormone & Immunological Test", name: "T3", rate: "1000/-", price: 1000 },
-            { sl: "40", category: "Hormone & Immunological Test", name: "T4", rate: "1000/-", price: 1000 },
-            { sl: "41", category: "Hormone & Immunological Test", name: "TSH", rate: "1000/-", price: 1000 },
-            { sl: "42", category: "Hormone & Immunological Test", name: "FT3", rate: "1000/-", price: 1000 },
-            { sl: "43", category: "Hormone & Immunological Test", name: "FT4", rate: "3000/-", price: 3000 },
-            { sl: "44", category: "Hormone & Immunological Test", name: "T3, T4, TSH", rate: "400/-", price: 400 },
-            { sl: "45", category: "Hormone & Immunological Test", name: "S. Ferritine", rate: "1450/-", price: 1450 },
-            { sl: "46", category: "Hormone & Immunological Test", name: "S. IgE (Total)", rate: "1400/-", price: 1400 },
-            { sl: "47", category: "Hormone & Immunological Test", name: "S. FSH", rate: "2000/-", price: 2000 },
-            { sl: "48", category: "Hormone & Immunological Test", name: "B-HCG", rate: "1500/-", price: 1500 },
-            { sl: "49", category: "Hormone & Immunological Test", name: "S. Testosterone (Total)", rate: "1400/-", price: 1400 },
-            { sl: "50", category: "Hormone & Immunological Test", name: "Prolactin", rate: "1200/-", price: 1200 },
-            { sl: "51", category: "Hormone & Immunological Test", name: "Progesterone", rate: "2000/-", price: 2000 },
-            { sl: "52", category: "Hormone & Immunological Test", name: "CA 125", rate: "2000/-", price: 2000 },
-            { sl: "53", category: "Hormone & Immunological Test", name: "CA 19.9", rate: "1980/-", price: 1980 },
-            { sl: "54", category: "Hormone & Immunological Test", name: "CA 15.3", rate: "3500/-", price: 3500 },
-            { sl: "55", category: "Hormone & Immunological Test", name: "Vitamin-D (25-OH)", rate: "2200/-", price: 2200 },
-            { sl: "56", category: "Hormone & Immunological Test", name: "Vitamin B-12", rate: "1400/-", price: 1400 },
-            { sl: "57", category: "Hormone & Immunological Test", name: "S. Troponin-1", rate: "2000/-", price: 2000 },
-            { sl: "58", category: "Hormone & Immunological Test", name: "Dope-Test", rate: "N/A", price: null },
-            { sl: "59", category: "Microbiological Test", name: "Blood For C/S", rate: "700/-", price: 700 },
-            { sl: "60", category: "Microbiological Test", name: "Urine For C/S", rate: "500/-", price: 500 },
-            { sl: "61", category: "Microbiological Test", name: "AFB Sputum", rate: "180/-", price: 180 },
-            { sl: "62", category: "Microbiological Test", name: "Urine R/M/E", rate: "450/-", price: 450 },
-            { sl: "63", category: "Microbiological Test", name: "Stool OBT", rate: "200/-", price: 200 },
-            { sl: "64", category: "Microbiological Test", name: "Stool R/E", rate: "N/A", price: null },
-            { sl: "65", category: "Serological Test", name: "RA Factor", rate: "600/-", price: 600 },
-            { sl: "66", category: "Serological Test", name: "CRP", rate: "600/-", price: 600 },
-            { sl: "67", category: "Serological Test", name: "Aso Titre", rate: "600/-", price: 600 },
-            { sl: "68", category: "Serological Test", name: "Blood Group", rate: "150/-", price: 150 },
-            { sl: "69", category: "Serological Test", name: "Febrile Antigen", rate: "900/-", price: 900 },
-            { sl: "70", category: "Serological Test", name: "Widal Test", rate: "400/-", price: 400 },
-            { sl: "71", category: "Serological Test", name: "Weil Felix", rate: "400/-", price: 400 },
-            { sl: "72", category: "Serological Test", name: "VDRL", rate: "360/-", price: 360 },
-            { sl: "73", category: "Serological Test", name: "Cross Matching", rate: "1000/-", price: 1000 },
-            { sl: "74", category: "Serological Test", name: "TPHA/Syphilis (ICT)", rate: "480/-", price: 480 },
-            { sl: "75", category: "Serological Test", name: "APTT", rate: "1200/-", price: 1200 },
-            { sl: "76", category: "Serological Test", name: "MT", rate: "350/-", price: 350 },
-            { sl: "77", category: "Serological Test", name: "Kala-Azar (ICT)", rate: "900/-", price: 900 },
-            { sl: "78", category: "Serological Test", name: "Pregnancy Test (PT)", rate: "240/-", price: 240 },
-            { sl: "79", category: "Serological Test", name: "Dengue IgM & IgG, NS1", rate: "500/-", price: 500 },
-            { sl: "80", category: "Serological Test", name: "H.Pylori (ICT)", rate: "450/-", price: 450 },
-            { sl: "81", category: "Serological Test", name: "HAV (ICT)", rate: "500/-", price: 500 },
-            { sl: "82", category: "Serological Test", name: "HBsAg (ICT)", rate: "500/-", price: 500 },
-            { sl: "83", category: "Serological Test", name: "HCV (ICT)", rate: "N/A", price: null },
-            { sl: "84", category: "Serological Test", name: "HEV (ICT)", rate: "500/-", price: 500 },
-            { sl: "85", category: "Serological Test", name: "HIV 1&2 (ICT)", rate: "N/A", price: null },
-            { sl: "86", category: "Serological Test", name: "HCG (ICT)", rate: "N/A", price: null },
-            { sl: "87", category: "Ultrasonography Test", name: "USG of Neck", rate: "1500/-", price: 1500 },
-            { sl: "88", category: "Ultrasonography Test", name: "USG of W/A", rate: "900/-", price: 900 },
-            { sl: "89", category: "Ultrasonography Test", name: "U/A, L/A, KUB (Each)", rate: "800/-", price: 800 },
-            { sl: "90", category: "Ultrasonography Test", name: "Pregnancy Profile", rate: "850/-", price: 850 },
-            { sl: "91", category: "Ultrasonography Test", name: "USG of Both Breast", rate: "1600/-", price: 1600 },
-            { sl: "92", category: "Ultrasonography Test", name: "W/A & PVR", rate: "1200/-", price: 1200 },
-            { sl: "93", category: "Ultrasonography Test", name: "USG of HBS", rate: "800/-", price: 800 },
-            { sl: "94", category: "Ultrasonography Test", name: "KUB & PVR", rate: "1050/-", price: 1050 },
-            { sl: "95", category: "Ultrasonography Test", name: "Twin Pregnancy", rate: "1150/-", price: 1150 },
-            { sl: "96", category: "Ultrasonography Test", name: "USG of Thyroid", rate: "1500/-", price: 1500 },
-            { sl: "97", category: "Ultrasonography Test", name: "USB of TVS", rate: "1800/-", price: 1800 },
-            { sl: "98", category: "Ultrasonography Test", name: "Anomaly Scan (Colour)", rate: "1600/-", price: 1600 },
-            { sl: "99", category: "X-Ray", name: "X-ray 10 x 14", rate: "650/-", price: 650 },
-            { sl: "100", category: "X-Ray", name: "X-ray 14 x 17", rate: "700/-", price: 700 },
-            { sl: "101", category: "X-Ray", name: "X-ray 8 x10", rate: "550/-", price: 550 },
-            { sl: "102", category: "X-Ray", name: "X-ray Report B/V", rate: "100/-", price: 100 },
-            { sl: "103", category: "ECG/ECHO", name: "ECG", rate: "350/-", price: 350 },
-            { sl: "104", category: "ECG/ECHO", name: "Echo (4D) Adult", rate: "2400/-", price: 2400 },
-            { sl: "105", category: "ECG/ECHO", name: "Echo", rate: "1200/-", price: 1200 }
-        ];
+    let activeCategory = "All";
+    const selectedSls = new Set();
 
-        // Category badge color mapping for quick visual scanning
-        const categoryColors = {
-            "Biochemical Test": "bg-teal-50 text-teal-700 border-teal-200",
-            "Haematological Test": "bg-rose-50 text-rose-700 border-rose-200",
-            "Hormone & Immunological Test": "bg-purple-50 text-purple-700 border-purple-200",
-            "Microbiological Test": "bg-amber-50 text-amber-700 border-amber-200",
-            "Serological Test": "bg-sky-50 text-sky-700 border-sky-200",
-            "Ultrasonography Test": "bg-emerald-50 text-emerald-700 border-emerald-200",
-            "X-Ray": "bg-indigo-50 text-indigo-700 border-indigo-200",
-            "ECG/ECHO": "bg-cyan-50 text-cyan-700 border-cyan-200"
-        };
+    const searchInput = document.getElementById("searchInput");
+    const clearSearch = document.getElementById("clearSearch");
+    const categoryBar = document.getElementById("categoryBar");
+    const tableBody = document.getElementById("tableBody");
+    const emptyState = document.getElementById("emptyState");
+    const resultCount = document.getElementById("resultCount");
+    const calcBar = document.getElementById("calcBar");
+    const selectedCount = document.getElementById("selectedCount");
+    const totalAmount = document.getElementById("totalAmount");
+    const resetCalc = document.getElementById("resetCalc");
 
-        // Application State
-        let activeCategory = "All";
-        let searchQuery = "";
-        let selectedSLs = new Set();
+    // Build Category Pills
+    const categories = ["All", ...new Set(tests.map(t => t.category))];
+    categories.forEach(cat => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "cat-btn" + (cat === "All" ? " active" : "");
+      btn.textContent = cat;
+      btn.addEventListener("click", () => {
+        activeCategory = cat;
+        document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderTable();
+      });
+      categoryBar.appendChild(btn);
+    });
 
-        // DOM Elements
-        const searchInput = document.getElementById("searchInput");
-        const clearSearchBtn = document.getElementById("clearSearchBtn");
-        const categoryContainer = document.getElementById("categoryContainer");
-        const testListContainer = document.getElementById("testListContainer");
-        const resultCount = document.getElementById("resultCount");
-        const emptyState = document.getElementById("emptyState");
-        const resetFiltersBtn = document.getElementById("resetFiltersBtn");
-        const toggleSelectAllVisible = document.getElementById("toggleSelectAllVisible");
-
-        // Estimate Bar & Modal Elements
-        const estimateBar = document.getElementById("estimateBar");
-        const selectedCountBadge = document.getElementById("selectedCountBadge");
-        const totalAmountEl = document.getElementById("totalAmount");
-        const naWarningEl = document.getElementById("naWarning");
-        const viewEstimateBtn = document.getElementById("viewEstimateBtn");
-        const clearEstimateBtn = document.getElementById("clearEstimateBtn");
-        const estimateModal = document.getElementById("estimateModal");
-        const modalBackdrop = document.getElementById("modalBackdrop");
-        const closeModalBtn = document.getElementById("closeModalBtn");
-        const closeModalFooterBtn = document.getElementById("closeModalFooterBtn");
-        const modalItemsList = document.getElementById("modalItemsList");
-        const modalTotalAmount = document.getElementById("modalTotalAmount");
-        const copySlipBtn = document.getElementById("copySlipBtn");
-        const copyBtnText = document.getElementById("copyBtnText");
-
-        // Initialize Categories
-        function renderCategories() {
-            const categories = ["All", ...new Set(testData.map(item => item.category))];
-            
-            categoryContainer.innerHTML = categories.map(cat => {
-                const count = cat === "All" ? testData.length : testData.filter(t => t.category === cat).length;
-                const isActive = activeCategory === cat;
-                const activeClasses = isActive 
-                    ? "bg-teal-700 text-white border-teal-700 shadow-sm" 
-                    : "bg-white text-slate-600 border-slate-200 hover:bg-slate-100 hover:text-slate-900";
-                
-                return `
-                    <button 
-                        data-category="${cat}"
-                        class="category-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium border transition-all cursor-pointer flex items-center gap-1.5 ${activeClasses}"
-                    >
-                        <span>${cat}</span>
-                        <span class="text-[11px] px-1.5 py-0.2 rounded-full ${isActive ? 'bg-teal-600 text-teal-100' : 'bg-slate-100 text-slate-500'}">
-                            ${count}
-                        </span>
-                    </button>
-                `;
-            }).join("");
-
-            // Attach click listeners
-            document.querySelectorAll(".category-pill").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    activeCategory = btn.getAttribute("data-category");
-                    renderCategories();
-                    renderTests();
-                });
-            });
+    function updateCalculator() {
+      let sum = 0;
+      selectedSls.forEach(sl => {
+        const item = tests.find(t => t.sl === sl);
+        if (item && typeof item.rate === "number") {
+          sum += item.rate;
         }
+      });
 
-        // Filter logic
-        function getFilteredTests() {
-            const q = searchQuery.trim().toLowerCase();
-            return testData.filter(item => {
-                const matchesCategory = activeCategory === "All" || item.category === activeCategory;
-                if (!matchesCategory) return false;
-                if (!q) return true;
+      const count = selectedSls.size;
+      if (count > 0) {
+        calcBar.classList.add("visible");
+        selectedCount.textContent = `${count} test${count > 1 ? "s" : ""} selected`;
+        totalAmount.textContent = sum.toLocaleString("en-IN");
+      } else {
+        calcBar.classList.remove("visible");
+      }
+    }
 
-                // Match SL (e.g., "01" or "1"), Test Name, or Category
-                const slNumeric = String(parseInt(item.sl, 10));
-                return (
-                    item.name.toLowerCase().includes(q) ||
-                    item.sl.toLowerCase().includes(q) ||
-                    slNumeric === q ||
-                    item.category.toLowerCase().includes(q)
-                );
-            });
-        }
+    function renderTable() {
+      const query = searchInput.value.trim().toLowerCase();
+      clearSearch.classList.toggle("visible", query.length > 0);
 
-        // Highlight matching search text
-        function highlightText(text, query) {
-            if (!query.trim()) return text;
-            const escaped = query.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            const regex = new RegExp(`(${escaped})`, 'gi');
-            return text.replace(regex, '<mark class="bg-amber-200/80 text-slate-900 rounded px-0.5">$1</mark>');
-        }
+      const filtered = tests.filter(item => {
+        const matchCat = activeCategory === "All" || item.category === activeCategory;
+        const matchQuery =
+          !query ||
+          item.name.toLowerCase().includes(query) ||
+          item.sl.includes(query) ||
+          item.category.toLowerCase().includes(query);
+        return matchCat && matchQuery;
+      });
 
-        // Render Test List
-        function renderTests() {
-            const filtered = getFilteredTests();
+      resultCount.textContent = `Showing ${filtered.length} of ${tests.length} tests`;
+      tableBody.innerHTML = "";
 
-            // Update count text
-            if (filtered.length === testData.length) {
-                resultCount.innerHTML = `Showing all <strong class="text-slate-800">${testData.length}</strong> tests`;
+      if (filtered.length === 0) {
+        emptyState.style.display = "block";
+        return;
+      }
+
+      emptyState.style.display = "none";
+
+      filtered.forEach(item => {
+        const tr = document.createElement("tr");
+        const isChecked = selectedSls.has(item.sl);
+        if (isChecked) tr.classList.add("selected");
+
+        const rateHtml =
+          typeof item.rate === "number"
+            ? `<span class="rate-val">${item.rate}/-</span>`
+            : `<span class="rate-na">-</span>`;
+
+        tr.innerHTML = `
+          <td class="select-col">
+            <input type="checkbox" ${isChecked ? "checked" : ""} ${item.rate === null ? "disabled" : ""} />
+          </td>
+          <td><span class="sl-badge">${item.sl}</span></td>
+          <td>
+            <div class="test-name">${item.name}</div>
+            <div class="test-cat">${item.category}</div>
+          </td>
+          <td class="rate-col">${rateHtml}</td>
+        `;
+
+        const checkbox = tr.querySelector("input[type='checkbox']");
+        if (item.rate !== null) {
+          tr.addEventListener("click", e => {
+            if (e.target !== checkbox) {
+              checkbox.checked = !checkbox.checked;
+            }
+            if (checkbox.checked) {
+              selectedSls.add(item.sl);
+              tr.classList.add("selected");
             } else {
-                resultCount.innerHTML = `Found <strong class="text-teal-700">${filtered.length}</strong> of ${testData.length} tests`;
+              selectedSls.delete(item.sl);
+              tr.classList.remove("selected");
             }
-
-            if (filtered.length === 0) {
-                testListContainer.innerHTML = "";
-                emptyState.classList.remove("hidden");
-                return;
-            }
-
-            emptyState.classList.add("hidden");
-
-            testListContainer.innerHTML = filtered.map(item => {
-                const isSelected = selectedSLs.has(item.sl);
-                const badgeClass = categoryColors[item.category] || "bg-slate-100 text-slate-700 border-slate-200";
-                const isNA = item.rate === "N/A";
-                const highlightedName = highlightText(item.name, searchQuery);
-
-                return `
-                    <div 
-                        data-sl="${item.sl}"
-                        class="test-card group bg-white md:bg-transparent rounded-xl md:rounded-none border ${isSelected ? 'border-teal-500 bg-teal-50/40 md:bg-teal-50/50' : 'border-slate-200 md:border-0'} p-3.5 md:px-4 md:py-3.5 shadow-2xs md:shadow-none hover:bg-teal-50/30 transition-colors cursor-pointer"
-                    >
-                        <!-- Mobile Layout -->
-                        <div class="flex md:hidden items-start justify-between gap-3">
-                            <div class="flex items-start gap-2.5 min-w-0">
-                                <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-slate-100 text-slate-600 font-bold text-xs shrink-0 mt-0.5">
-                                    ${item.sl}
-                                </span>
-                                <div class="min-w-0">
-                                    <h3 class="font-semibold text-slate-900 text-sm leading-snug break-words">
-                                        ${highlightedName}
-                                    </h3>
-                                    <span class="inline-block mt-1.5 px-2 py-0.5 rounded-md text-[11px] font-medium border ${badgeClass}">
-                                        ${item.category}
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="flex flex-col items-end shrink-0 gap-2">
-                                <div class="text-right">
-                                    <span class="text-base font-bold ${isNA ? 'text-slate-400' : 'text-teal-700'}">
-                                        ${isNA ? 'N/A' : '৳ ' + item.rate}
-                                    </span>
-                                </div>
-                                <button 
-                                    type="button"
-                                    class="toggle-select-btn px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1 ${
-                                        isSelected 
-                                        ? 'bg-teal-600 text-white border-teal-600' 
-                                        : 'bg-slate-50 text-slate-600 border-slate-200 hover:border-teal-500 hover:text-teal-700'
-                                    }"
-                                >
-                                    <i class="fa-solid ${isSelected ? 'fa-check' : 'fa-plus'} text-[10px]"></i>
-                                    <span>${isSelected ? 'Added' : 'Add'}</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Desktop Grid Layout -->
-                        <div class="hidden md:grid md:grid-cols-12 gap-4 items-center">
-                            <div class="col-span-1">
-                                <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-slate-100 text-slate-600 font-bold text-xs">
-                                    ${item.sl}
-                                </span>
-                            </div>
-                            <div class="col-span-5 font-semibold text-slate-900 text-sm">
-                                ${highlightedName}
-                            </div>
-                            <div class="col-span-3">
-                                <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-medium border ${badgeClass}">
-                                    ${item.category}
-                                </span>
-                            </div>
-                            <div class="col-span-2 text-right font-bold text-base ${isNA ? 'text-slate-400' : 'text-teal-700'}">
-                                ${isNA ? 'N/A' : '৳ ' + item.rate}
-                            </div>
-                            <div class="col-span-1 flex justify-center">
-                                <button 
-                                    type="button"
-                                    class="toggle-select-btn px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all flex items-center gap-1 ${
-                                        isSelected 
-                                        ? 'bg-teal-600 text-white border-teal-600 shadow-2xs' 
-                                        : 'bg-white text-slate-600 border-slate-200 group-hover:border-teal-400 group-hover:text-teal-700'
-                                    }"
-                                >
-                                    <i class="fa-solid ${isSelected ? 'fa-check' : 'fa-plus'} text-[10px]"></i>
-                                    <span>${isSelected ? 'Added' : 'Add'}</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join("");
-
-            // Row click event to toggle selection
-            document.querySelectorAll(".test-card").forEach(card => {
-                card.addEventListener("click", (e) => {
-                    const sl = card.getAttribute("data-sl");
-                    toggleTestSelection(sl);
-                });
-            });
+            updateCalculator();
+          });
         }
 
-        // Toggle selection of a test for the bill estimator
-        function toggleTestSelection(sl) {
-            if (selectedSLs.has(sl)) {
-                selectedSLs.delete(sl);
-            } else {
-                selectedSLs.add(sl);
-            }
-            renderTests();
-            updateEstimateBar();
-        }
+        tableBody.appendChild(tr);
+      });
+    }
 
-        // Update Floating Estimate Bar
-        function updateEstimateBar() {
-            const count = selectedSLs.size;
-            if (count === 0) {
-                estimateBar.classList.add("translate-y-full");
-                return;
-            }
+    searchInput.addEventListener("input", renderTable);
 
-            estimateBar.classList.remove("translate-y-full");
-            selectedCountBadge.textContent = count;
+    clearSearch.addEventListener("click", () => {
+      searchInput.value = "";
+      searchInput.focus();
+      renderTable();
+    });
 
-            let total = 0;
-            let hasNA = false;
+    resetCalc.addEventListener("click", () => {
+      selectedSls.clear();
+      updateCalculator();
+      renderTable();
+    });
 
-            selectedSLs.forEach(sl => {
-                const item = testData.find(t => t.sl === sl);
-                if (item) {
-                    if (item.price !== null) {
-                        total += item.price;
-                    } else {
-                        hasNA = true;
-                    }
-                }
-            });
-
-            totalAmountEl.textContent = total.toLocaleString();
-            if (hasNA) {
-                naWarningEl.classList.remove("hidden");
-            } else {
-                naWarningEl.classList.add("hidden");
-            }
-        }
-
-        // Render Estimate Modal Content
-        function openEstimateModal() {
-            if (selectedSLs.size === 0) return;
-
-            let total = 0;
-            const selectedItems = testData.filter(t => selectedSLs.has(t.sl));
-
-            modalItemsList.innerHTML = selectedItems.map(item => {
-                if (item.price !== null) total += item.price;
-                return `
-                    <div class="py-3 flex items-center justify-between gap-3">
-                        <div class="min-w-0">
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs font-bold text-slate-400">#${item.sl}</span>
-                                <span class="text-sm font-semibold text-slate-800 truncate">${item.name}</span>
-                            </div>
-                            <div class="text-xs text-slate-500 mt-0.5">${item.category}</div>
-                        </div>
-                        <div class="flex items-center gap-3 shrink-0">
-                            <span class="text-sm font-bold ${item.price === null ? 'text-slate-400' : 'text-teal-700'}">
-                                ${item.price === null ? 'N/A' : '৳ ' + item.rate}
-                            </span>
-                            <button 
-                                data-remove-sl="${item.sl}"
-                                class="remove-modal-item w-7 h-7 rounded-lg bg-rose-50 hover:bg-rose-100 text-rose-600 flex items-center justify-center transition-colors"
-                                title="Remove test"
-                            >
-                                <i class="fa-solid fa-trash-can text-xs"></i>
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }).join("");
-
-            modalTotalAmount.textContent = `${total.toLocaleString()} Tk`;
-            estimateModal.classList.remove("hidden");
-
-            // Attach remove listeners inside modal
-            document.querySelectorAll(".remove-modal-item").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    const sl = btn.getAttribute("data-remove-sl");
-                    selectedSLs.delete(sl);
-                    renderTests();
-                    updateEstimateBar();
-                    if (selectedSLs.size === 0) {
-                        closeEstimateModal();
-                    } else {
-                        openEstimateModal();
-                    }
-                });
-            });
-        }
-
-        function closeEstimateModal() {
-            estimateModal.classList.add("hidden");
-        }
-
-        // Copy Slip to Clipboard (using execCommand for universal compatibility)
-        function copyEstimateSlip() {
-            const selectedItems = testData.filter(t => selectedSLs.has(t.sl));
-            if (selectedItems.length === 0) return;
-
-            let total = 0;
-            const lines = [
-                "AN-NASIR DIAGNOSTIC CENTER",
-                "Sadar Road, Joypurhat | Mob: 01339-757912",
-                "----------------------------------------",
-                "Estimated Test List:"
-            ];
-
-            selectedItems.forEach((item, idx) => {
-                if (item.price !== null) total += item.price;
-                lines.push(`${idx + 1}. [SL ${item.sl}] ${item.name} — ${item.price === null ? 'N/A' : item.rate + ' Tk'}`);
-            });
-
-            lines.push("----------------------------------------");
-            lines.push(`Total Estimated Cost: ${total.toLocaleString()} Tk`);
-
-            const textToCopy = lines.join("\n");
-
-            const textArea = document.createElement("textarea");
-            textArea.value = textToCopy;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-9999px";
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand("copy");
-                showToast("Estimate slip copied to clipboard!");
-            } catch (err) {
-                showToast("Unable to copy slip.");
-            }
-            document.body.removeChild(textArea);
-        }
-
-        // Toast Helper
-        let toastTimeout;
-        function showToast(msg) {
-            const toast = document.getElementById("toast");
-            const toastMessage = document.getElementById("toastMessage");
-            toastMessage.textContent = msg;
-            toast.classList.remove("opacity-0");
-            clearTimeout(toastTimeout);
-            toastTimeout = setTimeout(() => {
-                toast.classList.add("opacity-0");
-            }, 2200);
-        }
-
-        // Event Listeners
-        searchInput.addEventListener("input", (e) => {
-            searchQuery = e.target.value;
-            if (searchQuery.length > 0) {
-                clearSearchBtn.classList.remove("hidden");
-            } else {
-                clearSearchBtn.classList.add("hidden");
-            }
-            renderTests();
-        });
-
-        clearSearchBtn.addEventListener("click", () => {
-            searchQuery = "";
-            searchInput.value = "";
-            clearSearchBtn.classList.add("hidden");
-            searchInput.focus();
-            renderTests();
-        });
-
-        resetFiltersBtn.addEventListener("click", () => {
-            searchQuery = "";
-            searchInput.value = "";
-            clearSearchBtn.classList.add("hidden");
-            activeCategory = "All";
-            renderCategories();
-            renderTests();
-        });
-
-        toggleSelectAllVisible.addEventListener("click", () => {
-            const visible = getFilteredTests();
-            const allVisibleSelected = visible.every(t => selectedSLs.has(t.sl));
-            if (allVisibleSelected) {
-                visible.forEach(t => selectedSLs.delete(t.sl));
-            } else {
-                visible.forEach(t => selectedSLs.add(t.sl));
-            }
-            renderTests();
-            updateEstimateBar();
-        });
-
-        viewEstimateBtn.addEventListener("click", openEstimateModal);
-        clearEstimateBtn.addEventListener("click", () => {
-            selectedSLs.clear();
-            renderTests();
-            updateEstimateBar();
-        });
-
-        closeModalBtn.addEventListener("click", closeEstimateModal);
-        closeModalFooterBtn.addEventListener("click", closeEstimateModal);
-        modalBackdrop.addEventListener("click", closeEstimateModal);
-        copySlipBtn.addEventListener("click", copyEstimateSlip);
-
-        // Keyboard shortcut '/' to focus search
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "/" && document.activeElement !== searchInput) {
-                e.preventDefault();
-                searchInput.focus();
-            } else if (e.key === "Escape") {
-                closeEstimateModal();
-            }
-        });
-
-        // Initial Render
-        renderCategories();
-        renderTests();
-    </script>
+    renderTable();
+  </script>
 </body>
-  </html>
+</html>
